@@ -1,0 +1,28 @@
+.accordion-header button:focus {
+	box-shadow: none !important;
+	border-radius: 0 5px 0 0;
+}
+
+.accordion-button:not(.collapsed) {
+	background: none !important;
+}
+
+/* Ensure the content area is scrollable */
+.post-content {
+	max-height: 400px; /* Adjust as needed */
+	overflow-y: auto;
+	padding-bottom: 60px; /* Make space for the sticky footer */
+}
+
+/* Sticky footer styling */
+.sticky-footer {
+	position: sticky;
+	bottom: 0;
+	background: white; /* Match the background with your design */
+	border-top: 1px solid #ddd; /* Optional: Add a border for separation */
+}
+
+/* Optional: Adjust the spacing and background color as needed */
+.sticky-footer a {
+	display: block;
+}

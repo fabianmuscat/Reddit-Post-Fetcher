@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { PostComponent } from './components/post/post.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgFor } from '@angular/common';
+import { FirebaseService } from '../services/firebase/firebase.service';
+import { Post } from '../interfaces/post';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, PostComponent, NgFor],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  providers: [FirebaseService],
+})
+export class AppComponent implements OnInit {
+  posts!: Post[];
+  postCount!: number;
+
+  constructor(private firebaseService: FirebaseService) {}
+
+  ngOnInit() {
+    this.firebaseService.getPosts().subscribe((data: any) => {
+      this.posts = data;
+      this.postCount = data.length;
+    });
+  }
+
+  getPostsToExport() {
+    return localStorage.length;
+  }
+}

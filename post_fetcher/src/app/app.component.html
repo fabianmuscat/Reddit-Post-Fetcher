@@ -1,0 +1,65 @@
+<app-navbar [postsToExport]="getPostsToExport()"></app-navbar>
+
+<div
+	class="py-3 container col-sm-12 col-md-10 col-lg-9 d-flex flex-column vh-100 border border-0 border-start border-end border-secondary">
+	<!-- Form for Start Date and End Date -->
+	<form
+		[formGroup]="dateForm"
+		(ngSubmit)="onSubmit()"
+		class="mb-3 px-3 z-2 position-sticky bg-white">
+		<div class="row">
+			<div class="col form-group">
+				<label for="startDate"><b>Start Date</b></label>
+				<input
+					id="startDate"
+					type="date"
+					formControlName="startDate"
+					class="form-control"
+					required />
+			</div>
+
+			<div class="col form-group">
+				<label for="endDate"><b>End Date</b></label>
+				<input
+					id="endDate"
+					type="date"
+					formControlName="endDate"
+					class="form-control"
+					required />
+			</div>
+			<div class="col form-group">
+				<label for="search"><b>No. of Posts</b></label>
+				<input
+					id="limit"
+					type="number"
+					formControlName="limit"
+					class="form-control"
+					required />
+			</div>
+			<button
+				type="submit"
+				class="btn btn-primary p-lg-0 mt-3 col-lg-1"
+				[disabled]="dateForm.invalid">
+				<i class="bi bi-search"></i>
+			</button>
+		</div>
+	</form>
+
+	<div id="posts" class="container overflow-y-auto d-flex flex-column gap-2">
+		<h4
+			id="post-count"
+			class="sticky-top z-2 bg-white pb-3 d-none d-md-block">
+			{{
+				postCount == undefined
+					? 'Searching...'
+					: postCount + ' posts found'
+			}}
+		</h4>
+		<div
+			class="accordion d-flex flex-column"
+			id="posts-accordion"
+			*ngFor="let post of posts; index as id">
+			<app-post [post]="post" [id]="id"></app-post>
+		</div>
+	</div>
+</div>

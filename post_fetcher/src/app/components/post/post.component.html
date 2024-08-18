@@ -1,0 +1,63 @@
+<div class="accordion-item border-0 rounded-0">
+	<div class="accordion-header">
+		<h2 class="d-flex align-items-center gap-2 mb-0">
+			<input
+				type="checkbox"
+				class="form-check-input"
+				data-post-id="0"
+				[checked]="selectIfInStorage()"
+				(click)="saveToStorage($event)" />
+			<button
+				class="accordion-button collapsed"
+				type="button"
+				data-bs-toggle="collapse"
+				[attr.data-bs-target]="'#post-' + id"
+				aria-expanded="true"
+				aria-controls="'post-' + id">
+				<div
+					class="w-100 d-flex justify-content-between align-items-center me-2">
+					<span>{{ post.title }}</span>
+					<small class="badge bg-secondary">{{
+						post.created_date | date : 'fullDate'
+					}}</small>
+				</div>
+			</button>
+		</h2>
+	</div>
+
+	<div
+		[id]="'post-' + id"
+		class="accordion-collapse collapse bg-light rounded-0">
+		<div class="accordion-body p-3 post-content">
+			<div>
+				<h5>Post</h5>
+				<p
+					[innerHTML]="
+						post.selftext == ''
+							? 'No Content Provided'
+							: post.selftext
+					"></p>
+			</div>
+			<!-- Comments Section -->
+			<div class="mt-3">
+				<h5>Comments</h5>
+				<div
+					class="list-group"
+					*ngIf="post.comments !== null && post.comments!.length > 0">
+					<div
+						class="list-group-item"
+						*ngFor="let comment of post.comments">
+						{{ comment }}
+					</div>
+				</div>
+				<div *ngIf="!post.comments?.length">No comments available.</div>
+			</div>
+		</div>
+		<!-- Sticky Footer -->
+		<div class="sticky-footer bg-light p-3">
+			<a class="btn btn-primary" [href]="post.url" target="_blank">
+				View Original Post
+			</a>
+		</div>
+	</div>
+</div>

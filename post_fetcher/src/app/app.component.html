@@ -7,7 +7,18 @@
 		[formGroup]="dateForm"
 		(ngSubmit)="onSubmit()"
 		class="mb-3 px-3 z-2 position-sticky bg-white">
-		<div class="row">
+		<div class="row mb-2">
+			<div class="col form-group">
+				<label for="search"><b>Subreddit</b></label>
+				<input
+					id="subreddit"
+					type="text"
+					formControlName="subreddit"
+					class="form-control"
+					required />
+			</div>
+		</div>
+		<div class="row mb-2">
 			<div class="col form-group">
 				<label for="startDate"><b>Start Date</b></label>
 				<input
@@ -28,7 +39,7 @@
 					required />
 			</div>
 			<div class="col form-group">
-				<label for="search"><b>No. of Posts</b></label>
+				<label for="search"><b>Max No. of Posts</b></label>
 				<input
 					id="limit"
 					type="number"

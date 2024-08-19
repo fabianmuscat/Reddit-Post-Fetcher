@@ -1,4 +1,4 @@
-import "./chunk-6AVURDC7.js";
+import "./chunk-IKKUA6TS.js";
 import {
   FIREBASE_APP_NAME,
   FIREBASE_OPTIONS,
@@ -14,7 +14,7 @@ import {
   ɵgetDefaultInstanceOf,
   ɵlazySDKProxy,
   ɵzoneWrap
-} from "./chunk-JXZQ2FNJ.js";
+} from "./chunk-LGPORU3S.js";
 import {
   Component,
   ComponentContainer,
@@ -63,10 +63,10 @@ import {
   validateArgCount,
   validateCallback,
   validateContextObject
-} from "./chunk-6DTRAQMS.js";
+} from "./chunk-OUSWF7NR.js";
 import {
   isPlatformServer
-} from "./chunk-BUA45UU6.js";
+} from "./chunk-UCEBS4VQ.js";
 import {
   Inject,
   Injectable,
@@ -81,7 +81,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-VVV35EBO.js";
+} from "./chunk-OU4EIN6V.js";
 import {
   Observable,
   Subject,
@@ -110,7 +110,7 @@ import "./chunk-LHRTKJE6.js";
 import {
   __async,
   __spreadValues
-} from "./chunk-JN3CWD3G.js";
+} from "./chunk-NINA3NFV.js";
 
 // node_modules/@angular/fire/fesm2022/angular-fire-app.mjs
 var FirebaseApp = class {
@@ -1067,7 +1067,7 @@ var AngularFireAuth = class _AngularFireAuth {
   credential;
   constructor(options, name4, platformId, zone, schedulers, useEmulator, settings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
     const logins = new Subject();
-    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-GOOJJUQY.js"))), map(() => ɵfirebaseAppFactory(options, zone, name4)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
+    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-KLZ7VJBY.js"))), map(() => ɵfirebaseAppFactory(options, zone, name4)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
       bufferSize: 1,
       refCount: false
     }));

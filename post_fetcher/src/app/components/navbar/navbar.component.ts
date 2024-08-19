@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SessionStorageService } from '../../../services/session/session-storage.service';
-import { CsvExportService } from '../../../services/export/csv-export.service';
+
 import Swal from 'sweetalert2';
+
+import { JsonExportService } from '../../../services/export/json-export.service';
+import { SessionStorageService } from '../../../services/session/session-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +13,13 @@ import Swal from 'sweetalert2';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
-  title = "Baldur's Gate 3 - Subreddit Posts";
+  title = "Reddit Post Fetcher";
   @Input() postsToExport!: number;
   hasPosts!: boolean;
 
   constructor(
     private sessionStorageService: SessionStorageService,
-    private csv: CsvExportService
+    private json: JsonExportService
   ) {}
 
   ngOnInit() {
@@ -52,6 +54,6 @@ export class NavbarComponent implements OnInit {
   }
 
   exportPosts() {
-    this.csv.exportToCsv();
+    this.json.exportToJson();
   }
 }

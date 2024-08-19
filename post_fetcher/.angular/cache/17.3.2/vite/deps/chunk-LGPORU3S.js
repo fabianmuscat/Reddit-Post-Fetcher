@@ -2,7 +2,7 @@ import {
   firebase,
   getApps,
   registerVersion
-} from "./chunk-6DTRAQMS.js";
+} from "./chunk-OUSWF7NR.js";
 import {
   Inject,
   Injectable,
@@ -19,7 +19,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-VVV35EBO.js";
+} from "./chunk-OU4EIN6V.js";
 import {
   Observable,
   asyncScheduler,
@@ -444,4 +444,4 @@ firebase/compat/app/dist/esm/index.esm.js:
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=chunk-JXZQ2FNJ.js.map
+//# sourceMappingURL=chunk-LGPORU3S.js.map

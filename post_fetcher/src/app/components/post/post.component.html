@@ -4,9 +4,8 @@
 			<input
 				type="checkbox"
 				class="form-check-input"
-				data-post-id="0"
 				[checked]="selectIfInStorage()"
-				(click)="saveToStorage($event)" />
+				(click)="togglePost($event)" />
 			<button
 				class="accordion-button collapsed"
 				type="button"
@@ -15,9 +14,9 @@
 				aria-expanded="true"
 				aria-controls="'post-' + id">
 				<div
-					class="w-100 d-flex justify-content-between align-items-center me-2">
+					class="w-100 d-flex flex-sm-column-reverse flex-md-row justify-content-between align-items-sm-start align-items-md-center me-2">
 					<span>{{ post.title }}</span>
-					<small class="badge bg-secondary">{{
+					<small class="badge bg-secondary mb-sm-2">{{
 						post.created_date | date : 'fullDate'
 					}}</small>
 				</div>
@@ -27,7 +26,7 @@
 
 	<div
 		[id]="'post-' + id"
-		class="accordion-collapse collapse bg-light rounded-0">
+		class="accordion-collapse collapse bg-light rounded-0 mt-3">
 		<div class="accordion-body p-3 post-content">
 			<div>
 				<h5>Post</h5>
@@ -46,8 +45,15 @@
 					*ngIf="post.comments !== null && post.comments!.length > 0">
 					<div
 						class="list-group-item"
-						*ngFor="let comment of post.comments">
-						{{ comment }}
+						*ngFor="let comment of post.comments; let i = index">
+						<div class="d-flex justify-content-start gap-3">
+							<input
+								type="checkbox"
+								class="form-check-input"
+								[checked]="selectIfInStorage()"
+								(click)="toggleComment($event, i)" />
+							<span>{{ comment }}</span>
+						</div>
 					</div>
 				</div>
 				<div *ngIf="!post.comments?.length">No comments available.</div>

@@ -1,55 +1,45 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Post } from '../../interfaces/post';
+
 import { map, Observable, take } from 'rxjs';
 
+import moment from 'moment';
+
+import { Post } from '../../interfaces/post';
+
 @Injectable({
-	providedIn: 'root',
+	providedIn: "root"
 })
 export class FirebaseService {
 	constructor(private db: AngularFireDatabase) {}
-
+	
 	public getPosts(
+		subreddit: string,
 		startDate: string,
 		endDate: string,
 		limit: number
 	): Observable<Post[]> {
-		// Convert startDate and endDate to UTC timestamps
-		const startUtc = Date.parse(startDate);
-		const endUtc = Date.parse(endDate);
+	// Build the path to the posts
+	const path = `posts/${subreddit}`;
 
-		return this.db
-			.list<Post>('posts')
-			.valueChanges()
-			.pipe(
-				map((posts: Post[]) =>
-					posts
-						.filter(
-							(post) =>
-								Date.parse(post.created_date) >= startUtc &&
-								Date.parse(post.created_date) <= endUtc
-						)
-						.slice(0, limit)
-				)
-			);
+	return this.db
+		.list<Post>(path, ref => ref.orderByKey().startAt(startDate).endAt(endDate).limitToFirst(limit))
+		.valueChanges();
 	}
 
-	public cachePosts(posts: Post[]) {
+	public cachePosts(subreddit: string, posts: Post[]) {
 		posts.forEach((post: Post) => {
+			const createdDate = post.created_date;
+			const createdTimestamp = new Date(post.created_utc);
+			const createdTime = moment(createdTimestamp).format("HH:mm:ss");
+
+			const key = `${createdDate}_${createdTime}`;
 			this.db
-				.list<Post>('posts', (ref) =>
-					ref.orderByChild('url').equalTo(post.url)
-				)
-				.snapshotChanges()
-				.pipe(
-					take(1),
-					map((actions) => actions.length === 0) // Check if no post with this URL exists
-				)
-				.subscribe((exists) => {
-					if (exists) {
-						this.db.list<Post>('posts').push(post);
-					}
-				});
+			.list<Post>(`posts/${subreddit}`)
+			.snapshotChanges()
+			.subscribe((_) => {
+				this.db.list<Post>(`posts/${subreddit}`).set(key, post);
+			});
 		});
 	}
 }

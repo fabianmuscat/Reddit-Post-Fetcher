@@ -2,15 +2,15 @@ import {
 	ApplicationConfig,
 	enableProdMode,
 	importProvidersFrom,
-	NgModule,
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
-import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-
-import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
+import { environment } from '../environments/environment';
+
+import { routes } from './app.routes';
 
 if (environment.production) {
 	enableProdMode();

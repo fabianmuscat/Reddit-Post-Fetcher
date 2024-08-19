@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CsvExportService } from './csv-export.service';
+import { JsonExportService } from './json-export.service';
 
 describe('CsvExportService', () => {
-  let service: CsvExportService;
+  let service: JsonExportService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CsvExportService);
+    service = TestBed.inject(JsonExportService);
   });
 
   it('should be created', () => {

@@ -1,5 +1,4 @@
 import praw
-from praw.models import MoreComments
 import datetime
 
 class PrawWrapper:
@@ -32,8 +31,7 @@ class PrawWrapper:
           "url": f"https://www.reddit.com{post.permalink}",
           "created_date": datetime.datetime.fromtimestamp(post.created_utc).strftime('%Y-%m-%d'),
           "created_utc": post.created_utc,
-          "comments": comments,
-          "comments_count": len(comments)
+          "comments": comments
         }
           
         to_return.append(post_object)

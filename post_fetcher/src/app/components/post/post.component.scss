@@ -9,7 +9,7 @@
 
 /* Ensure the content area is scrollable */
 .post-content {
-	max-height: 400px; /* Adjust as needed */
+	max-height: 50vh; /* Adjust as needed */
 	overflow-y: auto;
 	padding-bottom: 60px; /* Make space for the sticky footer */
 }

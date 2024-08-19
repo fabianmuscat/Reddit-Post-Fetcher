@@ -25,6 +25,7 @@ class PrawWrapper:
       
       for post in top_posts:
         comments = list(self.__get_comments(post.id))
+        comments = sorted(comments)
         post_object = {
           "title": post.title,
           "selftext": post.selftext,

@@ -24,7 +24,7 @@ def get_posts():
       
     posts = prawWrapper.get_posts(subreddit=subreddit, limit=limit, start_date=start_date, end_date=end_date)
   except ValueError:
-    posts = prawWrapper.get_posts("BaldursGate3", limit=10)
+    posts = prawWrapper.get_posts(subreddit=subreddit, limit=10)
     
   return posts
 

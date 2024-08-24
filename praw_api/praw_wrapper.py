@@ -7,7 +7,7 @@ class PrawWrapper:
 
     def get_posts(self, subreddit, limit=10, start_date=None, end_date=None):
       self.subreddit = self.reddit.subreddit(subreddit)
-      top_posts = self.subreddit.top(time_filter='all', limit=limit)
+      top_posts = self.subreddit.top(time_filter='all', limit=None)
       
       if start_date:
         start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
@@ -25,25 +25,23 @@ class PrawWrapper:
       
       for post in top_posts:
         comments = list(self.__get_comments(post.id))
-        comments = sorted(comments)
         post_object = {
           "title": post.title,
           "selftext": post.selftext,
           "url": f"https://www.reddit.com{post.permalink}",
-          "created_date": datetime.datetime.fromtimestamp(post.created_utc).strftime('%Y-%m-%d'),
-          "created_utc": post.created_utc,
-          "comments": comments
+          "created_utc": post.created_utc * 1000,
+          "comments": sorted(comments)
         }
           
         to_return.append(post_object)
     
-      to_return = sorted(to_return, key=lambda x: x["created_date"], reverse=True)
+      to_return = sorted(to_return, key=lambda x: x["created_utc"], reverse=True)
       return to_return
     
     
     def __get_comments(self, id):
       submission = self.reddit.submission(id=id)
-      submission.comments.replace_more(limit=1)
+      submission.comments.replace_more(limit=5)
       
       for comment in submission.comments.list():
         yield comment.body

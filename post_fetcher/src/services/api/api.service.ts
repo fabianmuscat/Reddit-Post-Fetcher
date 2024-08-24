@@ -11,9 +11,7 @@ import { Post } from '../../interfaces/post';
 	providedIn: 'root',
 })
 export class ApiService {
-	private url =  environment.production ? 
-		'https://fabianmuscat.pythonanywhere.com/' : 
-		'http://127.0.0.1:5000/';
+	private url = 'http://127.0.0.1:5000/';
 
 	constructor(private httpClient: HttpClient) {}
 

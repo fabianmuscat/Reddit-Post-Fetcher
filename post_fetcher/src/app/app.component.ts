@@ -1,4 +1,4 @@
-import { Component, importProvidersFrom, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
 import {

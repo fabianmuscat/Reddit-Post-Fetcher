@@ -17,7 +17,7 @@
 					class="w-100 d-flex flex-sm-column-reverse flex-md-row justify-content-between align-items-sm-start align-items-md-center me-2">
 					<span>{{ post.title }}</span>
 					<small class="badge bg-secondary mb-sm-2">{{
-						post.created_date | date : 'fullDate'
+						post.created_utc | date : 'fullDate'
 					}}</small>
 				</div>
 			</button>

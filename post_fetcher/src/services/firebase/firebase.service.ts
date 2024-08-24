@@ -29,11 +29,7 @@ export class FirebaseService {
 
 	public cachePosts(subreddit: string, posts: Post[]) {
 		posts.forEach((post: Post) => {
-			const createdDate = post.created_date;
-			const createdTimestamp = new Date(post.created_utc);
-			const createdTime = moment(createdTimestamp).format("HH:mm:ss");
-
-			const key = `${createdDate}_${createdTime}`;
+			const key = moment(post.created_utc).format('YYYY-MM-DDTHH:mm:ss');
 			this.db
 			.list<Post>(`posts/${subreddit}`)
 			.snapshotChanges()
